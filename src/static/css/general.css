@@ -1,0 +1,245 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    animation: fadeInBody 1s ease-in;
+  }
+  
+  @keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  h1 {
+    color: #005f73;
+    text-align: center;
+    animation: floatText 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes floatText {
+    from { transform: translateY(0px); }
+    to { transform: translateY(5px); }
+  }
+  
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  video {
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+  }
+  
+ 
+  
+  .info-panel {
+    flex: 1;
+    max-width: 400px;
+    animation: slideIn 0.8s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  #imagen {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: pulse 3s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { filter: brightness(100%); }
+    50% { filter: brightness(105%); }
+    100% { filter: brightness(100%); }
+  }
+  
+  #titulo {
+    font-size: 1.4em;
+    margin: 10px 0;
+    color: #0a9396;
+  }
+  
+  #descripcion {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  button {
+    background: #0a9396;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:enabled {
+    background: #007f8c;
+    transform: scale(1.05);
+  }
+
+  .container-ejercicio {
+    display: flex;
+    gap: 20px;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+  }
+  
+  video {
+    width: 640px;
+    height: 360px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: none !important;
+  }
+  
+  .descripcion-box {
+    flex: 1;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .descripcion-box #imagen {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .descripcion-box button {
+    padding: 10px 20px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .descripcion-box button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .descripcion-box button:hover:enabled {
+    background-color: #0056b3;
+  }
+
+  .form-signin {
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+  .btn-signin {
+    background-color: #3e9853; /* Verde inicial */
+    
+  }
+  
+  .btn-signin:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+    transition: background-color 0.3s ease;
+  }
+
+  /* Asegura que la pantalla esté dividida en dos partes */
+.form-signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+
+  
+  .left-side img {
+    width: 800hv;
+    height: 80vh;
+    object-fit: cover;
+    transform: translateX(100%);
+    animation: slide-in 1s forwards;
+  }
+  
+  .right-side {
+    flex: 1;
+    max-width: 400px;
+    padding: 2rem;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .form-floating input {
+    margin-bottom: 10px;
+  }
+  
+  .btn-signin {
+    background-color: #28a745; /* Verde */
+    border-color: #28a745;
+  }
+  
+  .btn-signin:hover {
+    background-color: #218838; /* Verde más oscuro */
+    border-color: #1e7e34;
+  }
+
+  img {
+    width: 150%;
+    height: auto;
+    margin-bottom: 30px;
+    transform: translateX(-20%);
+  }
+
+  .btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los botones */
+    margin-top: 20px;
+}
+
+.btn-container .btn {
+    font-size: 1.2rem; /* Tamaño de texto más grande */
+    padding: 15px 30px; /* Botones más grandes */
+    flex: 1 1 calc(50% - 40px); /* Dos botones por fila */
+    text-align: center;
+    max-width: 300px; /* Ancho máximo de los botones */
+}
+
+.saludo-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.mensaje-container {
+  margin-top: 150px;
+  margin-bottom: 100px;
+}

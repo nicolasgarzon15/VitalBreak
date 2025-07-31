@@ -1,0 +1,45 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css')}}">
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<div class="saludo-container">
+<h1>¡Hola {{current_user.nombre}}, Bienvenido a VitalBreak!</h1>
+</div>
+<div class="mensaje-container">
+{% if current_user.rol == 'empleado' %}
+<h4>{{current_user.nombre}}, tomarte un momento para ti es más importante de lo que crees. Las pausas activas ayudan <br> 
+    a prevenir lesiones físicas, mejorar tu salud mental y mantener tu concentración a lo largo del día. ¡Comencemos con energía!</h4>
+{% endif %}
+
+{% if current_user.rol == 'jefe' %}
+  <h4>
+    {{current_user.nombre}}, Las pausas activas ayudan
+    a prevenir lesiones físicas, y mantener la concentración durante el día. <br><br>
+    Además, aquí puedes supervisar cómo tu equipo está utilizando VitalBreak para cuidar su bienestar. 
+    Revisa las estadísticas y acompaña a tus colaboradores en la construcción de hábitos saludables.
+  </h4>
+{% endif %}
+
+</div>
+    <div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorDificultad') }}">Rutinas por Dificultad</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio')}}">Rutina Rapida</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorMusculo') }}">Rutinas por Musculo</a>
+</div>
+<div class="btn-container">
+    {% if current_user.rol == 'jefe' %}
+    <a class="btn btn-secondary" href="{{ url_for('supervisar') }}">Supervisar Equipo</a>
+    {% endif %}
+    <a class="btn btn-secondary" href="{{ url_for('logout')}}">Salir</a>
+</div>
+{% endblock %}

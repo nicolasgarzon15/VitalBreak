@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css')}}">
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<div class="saludo-container">
+<h1>VitalBreak</h1>
+</div>
+<div class="mensaje-container">
+<h4>{{current_user.nombre}}, Selecciona una zona de tu cuerpo y dedica unos minutos a activarla. Ya sea cuello, hombros o manos <br> 
+    Cada parte merece cuidado, ¡Tú eliges dónde concentrarte hoy!</h4>
+</div>
+    <div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=2) }}">Rutina de Muñeca</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=4) }}">Rutina de Cuello</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=3) }}">Rutina de Manos</a>
+</div>
+<div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=5) }}">Rutina de Hombros</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=6) }}">Rutina de Brazos</a>
+    <a class="btn btn-secondary" href="{{ url_for('home')}}">Volver</a>
+</div>
+{% endblock %}

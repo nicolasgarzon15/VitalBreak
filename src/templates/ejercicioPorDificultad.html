@@ -1,0 +1,30 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css')}}">
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<div class="saludo-container">
+<h1>VitalBreak</h1>
+</div>
+<div class="mensaje-container">
+<h4>{{current_user.nombre}}, Elige la intensidad que se adapte a tu energía de hoy. <br> 
+    Desde rutinas suaves hasta retos más exigentes, VitalBreak te acompaña para que te sientas mejor cada día.</h4>
+</div>
+    <div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=4) }}">Dificultad Baja</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=7) }}">Dificultad Media</a>
+</div>
+<div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=10)}}">Dificultad Alta</a>
+    <a class="btn btn-secondary" href="{{ url_for('home')}}">Volver</a>
+</div>
+{% endblock %}

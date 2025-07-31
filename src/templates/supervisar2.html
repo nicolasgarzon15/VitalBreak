@@ -1,0 +1,95 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css')}}">
+
+{% endblock %}
+
+{% block body %}
+<h1>VitalBreak</h1>
+    <h4>{{ current_user.nombre }}, a continuación visualizarás las opciones de seguimiento de tus trabajadores,<br>
+        y la realización de sus pausas activas</h4>
+
+<!-- Contenedor para gráficas -->
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px;">
+    <div>
+        <h5>Por Día</h5>
+        <canvas id="graficaPorDia" height="200"></canvas>
+    </div>
+    <div>
+        <h5>Por Semana</h5>
+        <canvas id="graficaSemana" height="200"></canvas>
+    </div>
+    <div>
+        <h5>Por Mes</h5>
+        <canvas id="graficaMes" height="200"></canvas>
+    </div>
+    <div>
+        <h5>Progreso por Usuario (último mes)</h5>
+        <canvas id="graficaUsuarios" height="200"></canvas>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // === Datos simulados (sustituye por datos reales desde Flask si ya los tienes) ===
+    const fechasDia = {{ ejercicios|map(attribute='fecha')|map('string')|list|tojson }};
+    const totalesDia = {{ ejercicios|map(attribute='total')|list|tojson }};
+
+    const semanas = ["Semana 1", "Semana 2", "Semana 3"];
+    const totalesSemana = [5, 10, 7];
+
+    const meses = ["Abril", "Mayo", "Junio"];
+    const totalesMes = [22, 34, 30];
+
+    const usuarios = ["Carlos", "Ana", "Luis"];
+    const totalesUsuarios = [4, 6, 2];
+
+    // === Función generadora de gráficas ===
+    function crearGraficaLineal(idCanvas, etiquetas, datos, etiquetaTexto, color) {
+        new Chart(document.getElementById(idCanvas).getContext("2d"), {
+            type: 'line',
+            data: {
+                labels: etiquetas,
+                datasets: [{
+                    label: etiquetaTexto,
+                    data: datos,
+                    fill: false,
+                    borderColor: color,
+                    tension: 0.4,
+                    pointBackgroundColor: color
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Cantidad' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Periodo' }
+                    }
+                }
+            }
+        });
+    }
+
+    // === Llamados ===
+    crearGraficaLineal('graficaPorDia', fechasDia, totalesDia, 'Rutinas por Día', '#4e73df');
+    crearGraficaLineal('graficaSemana', semanas, totalesSemana, 'Rutinas por Semana', '#1cc88a');
+    crearGraficaLineal('graficaMes', meses, totalesMes, 'Rutinas por Mes', '#36b9cc');
+    crearGraficaLineal('graficaUsuarios', usuarios, totalesUsuarios, 'Usuarios Activos', '#f6c23e');
+</script>
+<div class="btn-container">
+    <a class="btn btn-secondary" href="{{ url_for('home') }}">Volver</a>
+</div>
+{% endblock %}

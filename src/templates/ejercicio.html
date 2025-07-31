@@ -1,0 +1,121 @@
+{% extends './base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block customCSS %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/general.css')}}">
+
+{% endblock %}
+
+{% block body %}
+<div class="saludo-container">
+<h1>Preparado, {{ current_user.nombre }}, empecemos tus pausas activas...</h1>
+
+</div>
+
+  <div style="display: flex; gap: 20px;">
+    <video id="video" width="640" height="360" controls autoplay>
+      <source id="video-source" src="" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <div style="flex: 1;">
+      <div id="imagen" style="height: 180px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 20px;"></div>
+      <h2 id="titulo"></h2>
+      <p id="descripcion"></p>
+      <div class="btn-container"></div>
+      <button id="btn-siguiente" onclick="siguienteVideo()" style="margin-top: 10px; padding: 10px;">Siguiente ejercicio</button>
+      <a id="btn-terminar"  class="btn btn-secondary" href="{{ url_for('rutinaCompletada',id_user=current_user.id) }}" style="display:none;" disabled>Terminar rutina</a>
+      </div>
+    </div>
+    
+    
+  </div>
+
+  
+
+
+
+  <script>
+    // Obtén la lista de ejercicios desde Flask
+    const ejercicios = [
+      {% for ej in ejercicios %}
+        {
+          video: "{{ url_for('static', filename=ej.video_path) | e }}",
+          imagen: "{{ url_for('static', filename=ej.imagen_path) | e }}",
+          titulo: "{{ ej.titulo | escape }}",
+          descripcion: "{{ ej.descripcion | escape }}"
+        }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ];
+    const tipo = {{ tipo|tojson }};
+    const rutina = {{ rutina|tojson }};
+  
+    let actual = 0; // Índice del video actual
+
+    const video = document.getElementById("video");
+    const btnSiguiente = document.getElementById("btn-siguiente");
+
+video.addEventListener("ended", () => {
+  btnSiguiente.disabled = false;
+});
+
+    video.addEventListener("timeupdate", () => {
+  const tiempoRestante = video.duration - video.currentTime;
+  if (tiempoRestante <= 10 && btnSiguiente.disabled) {
+    btnSiguiente.disabled = false;
+  }
+});
+  
+    // Función para cargar el ejercicio actual
+    function cargarEjercicio(index) {
+        btnSiguiente.disabled = true;
+      const ej = ejercicios[index];
+      document.getElementById("video-source").src = ej.video;
+      document.getElementById("video").load(); // Recargar video
+      document.getElementById("imagen").style.backgroundImage = `url('${ej.imagen}')`;
+      document.getElementById("titulo").innerText = ej.titulo;
+      document.getElementById("descripcion").innerText = ej.descripcion;
+    }
+
+  
+    // Función para avanzar al siguiente ejercicio
+    function siguienteVideo() {
+      if (tipo==1 || tipo==2) {
+        if (tipo==1) {
+                actual++;
+                if (actual < rutina) {
+                  cargarEjercicio(actual);
+                } else {
+                  document.getElementById("btn-siguiente").style.display = "none";
+                  document.getElementById("btn-terminar").disabled = false;
+                  document.getElementById("btn-terminar").style.display = "inline-block";
+                }
+        } else if (tipo==2) {
+                actual++;
+                if (actual < ejercicios.length) {
+                  cargarEjercicio(actual);
+                } else {
+                  document.getElementById("btn-siguiente").style.display = "none";
+                  document.getElementById("btn-terminar").disabled = false;
+                  document.getElementById("btn-terminar").style.display = "inline-block";
+                }
+        }
+      }else{
+      actual++;
+      if (actual < 3) {
+        cargarEjercicio(actual);
+      } else {
+        document.getElementById("btn-siguiente").style.display = "none";
+        document.getElementById("btn-terminar").disabled = false;
+        document.getElementById("btn-terminar").style.display = "inline-block";
+      }
+      }
+
+    }
+  
+    // Cargar el primer ejercicio al iniciar
+    window.onload = () => cargarEjercicio(actual);
+  </script>
+{% endblock %}
