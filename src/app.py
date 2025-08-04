@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required
 import random
 import datetime
+import os
 
 from config import config
 
@@ -17,8 +18,15 @@ from models.entities import User, Ejercicio
 
 app=Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://neondb_owner:npg_RsXCf5J7Ltmn@ep-lingering-salad-a2ump1k5-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require"
+# Configuración para Render
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://neondb_owner:npg_RsXCf5J7Ltmn@ep-lingering-salad-a2ump1k5-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'Secret')
 
 db = SQLAlchemy(app)
 
@@ -121,7 +129,8 @@ def rutinaCompletada(id_user):
 
 
 
-
 if __name__ == '__main__':
     app.config.from_object(config['development'])
-    app.run()
+    # Puerto para Render
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
