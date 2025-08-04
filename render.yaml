@@ -8,13 +8,6 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: DATABASE_URL
-        fromDatabase:
-          name: vitalbreak-db
-          property: connectionString
+        value: postgresql://neondb_owner:npg_RsXCf5J7Ltmn@ep-lingering-salad-a2ump1k5-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require
       - key: SECRET_KEY
-        generateValue: true
-
-databases:
-  - name: vitalbreak-db
-    databaseName: vitalbreak
-    user: vitalbreak 
+        generateValue: true 
