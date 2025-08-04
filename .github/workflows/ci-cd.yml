@@ -59,7 +59,7 @@ jobs:
         SECRET_KEY: test-secret-key
       run: |
         # Basic Flask app test
-        python -c "from src.app import app; print('Flask app imports successfully')"
+        cd src && python -c "from app import app; print('Flask app imports successfully')"
     
     - name: Security scan with bandit
       run: |
