@@ -66,13 +66,13 @@ body {
   }
   
   #titulo {
-    font-size: 1.4em;
+    font-size: 3em;
     margin: 10px 0;
     color: #0a9396;
   }
   
   #descripcion {
-    font-size: 1em;
+    font-size: 2em;
     color: #555;
   }
   
@@ -107,8 +107,8 @@ body {
   }
   
   video {
-    width: 640px;
-    height: 360px;
+    width: 920px;
+    height: 630px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: none !important;
@@ -211,7 +211,13 @@ body {
     background-color: #218838; /* Verde más oscuro */
     border-color: #1e7e34;
   }
-
+.img-fluid {
+    max-width: 40%;
+    height: auto;
+    margin: 30px auto;
+  display: block;
+  transform: none;
+}
   img {
     width: 150%;
     height: auto;
