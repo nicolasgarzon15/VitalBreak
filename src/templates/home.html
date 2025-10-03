@@ -32,14 +32,28 @@
 
 </div>
     <div class="btn-container">
-    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorDificultad') }}">Rutinas por Dificultad</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio')}}">Rutina Rapida</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorMusculo') }}">Rutinas por Musculo</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorDificultad') }}">
+      <strong style="color: white;">Rutinas por Dificultad</strong><br>
+      <span style="font-size: 0.9em;">Dificultad baja, media y alta</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio')}}">
+      <strong style="color: white;">Rutina Rapida</strong><br>
+      <span style="font-size: 0.9em;">(3 min aprox)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicioPorMusculo') }}">
+      <strong style="color: white;">Rutinas por Musculo</strong><br>
+        <span style="font-size: 0.9em;">Decide que musculo activar</span>
+    </a>
 </div>
 <div class="btn-container">
     {% if current_user.rol == 'jefe' %}
-    <a class="btn btn-secondary" href="{{ url_for('supervisar') }}">Supervisar Equipo</a>
+    <a class="btn btn-secondary" href="{{ url_for('supervisar') }}">
+      <strong style="color: white;">Supervisar Equipo</strong><br>
+      <span style="font-size: 0.9em;">Seguimiento de tus trabajadores</span>
+    </a>
     {% endif %}
-    <a class="btn btn-secondary" href="{{ url_for('logout')}}">Salir</a>
+    <a class="btn btn-secondary" href="{{ url_for('logout')}}">
+      <strong style="color: white;">Salir</strong><br>
+    </a>
 </div>
 {% endblock %}
