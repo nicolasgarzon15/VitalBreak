@@ -18,15 +18,33 @@
 <div class="mensaje-container">
 <h4>{{current_user.nombre}}, Selecciona una zona de tu cuerpo y dedica unos minutos a activarla. Ya sea cuello, hombros o manos <br> 
     Cada parte merece cuidado, ¡Tú eliges dónde concentrarte hoy!</h4>
+    Para que la actividad se marque como completada, debes completar todos los ejercicios de la rutina.
 </div>
     <div class="btn-container">
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=2) }}">Rutina de Muñeca</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=4) }}">Rutina de Cuello</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=3) }}">Rutina de Manos</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=2) }}">
+        <strong style="color: white;">Rutina de Muñeca</strong><br>
+        <span style="font-size: 0.9em;">(3 min aprox.)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=4) }}">
+        <strong style="color: white;">Rutina de Cuello</strong><br>
+        <span style="font-size: 0.9em;">(7 min aprox)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=3) }}">
+        <strong style="color: white;">Rutina de Manos</strong><br>
+        <span style="font-size: 0.9em;">(3 min aprox)</span>
+    </a>
 </div>
 <div class="btn-container">
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=5) }}">Rutina de Hombros</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=6) }}">Rutina de Brazos</a>
-    <a class="btn btn-secondary" href="{{ url_for('home')}}">Volver</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=5) }}">
+        <strong style="color: white;">Rutina de Hombros</strong><br>
+        <span style="font-size: 0.9em;">(5 min aprox)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=2,rutina=6) }}">
+        <strong style="color: white;">Rutina de Brazos</strong><br>
+        <span style="font-size: 0.9em;">(3 min aprox)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('home')}}">
+        <strong style="color: white;">Volver</strong><br>
+    </a>
 </div>
 {% endblock %}

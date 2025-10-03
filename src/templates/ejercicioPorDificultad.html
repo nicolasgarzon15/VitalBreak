@@ -18,13 +18,25 @@
 <div class="mensaje-container">
 <h4>{{current_user.nombre}}, Elige la intensidad que se adapte a tu energía de hoy. <br> 
     Desde rutinas suaves hasta retos más exigentes, VitalBreak te acompaña para que te sientas mejor cada día.</h4>
+    Para que la actividad se marque como completada, debes completar todos los ejercicios de la rutina.
 </div>
     <div class="btn-container">
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=4) }}">Dificultad Baja</a>
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=7) }}">Dificultad Media</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=4) }}">
+        <strong style="color: white;">Dificultad Baja</strong><br>
+        <span style="font-size: 0.9em;">(5 min aprox.)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=7) }}">
+        <strong style="color: white;">Dificultad Media</strong><br>
+        <span style="font-size: 0.9em;">(8 min aprox.)</span>
+    </a>
 </div>
 <div class="btn-container">
-    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=10)}}">Dificultad Alta</a>
-    <a class="btn btn-secondary" href="{{ url_for('home')}}">Volver</a>
+    <a class="btn btn-secondary" href="{{ url_for('ejercicio',tipo=1,rutina=10)}}">
+        <strong style="color: white;">Dificultad Alta</strong><br>
+        <span style="font-size: 0.9em;">(10 min aprox.)</span>
+    </a>
+    <a class="btn btn-secondary" href="{{ url_for('home')}}">
+        <strong style="color: white;">Volver</strong><br>
+    </a>
 </div>
 {% endblock %}
