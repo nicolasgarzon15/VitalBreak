@@ -250,7 +250,7 @@ body {
   margin-bottom: 70px;
 }
 
-/* Ocultar la barra de progreso del video */
+/* Ocultar solo la barra de progreso del video */
 video::-webkit-media-controls-timeline {
     display: none !important;
 }
@@ -266,18 +266,4 @@ video::-webkit-media-controls-time-remaining-display {
 /* Para Firefox */
 video::-moz-media-controls-timeline {
     display: none !important;
-}
-
-/* Para otros navegadores */
-video::-webkit-media-controls-panel {
-    display: none !important;
-}
-
-/* Mostrar solo play/pause */
-video::-webkit-media-controls-play-button {
-    display: block !important;
-}
-
-video::-webkit-media-controls-pause-button {
-    display: block !important;
 }
